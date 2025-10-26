@@ -31,6 +31,6 @@ OR
 ```terminal
 docker-compose up -d
 ```
-
+## 4. Stretch Challenge 
 ### Remote
-you can run your code remotely by running the docker container in a [codespace](https://docs.github.com/en/codespaces/quickstart)
+Try to run your code remotely by running the docker container in a [codespace](https://docs.github.com/en/codespaces/quickstart)
