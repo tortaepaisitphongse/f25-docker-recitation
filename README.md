@@ -33,13 +33,4 @@ docker-compose up -d
 ```
 
 ### Remote
-Instructions from [here](https://fly.io/docs/languages-and-frameworks/dockerfile/).
-1. The `fly launch` command detects `Dockerfile` and builds it.
-```terminal
-fly launch
-```
-
-2. Deploy the application with fly.
-```terminal
-fly deploy
-```
+you can run your code remotely by running the docker container in a [codespace](https://docs.github.com/en/codespaces/quickstart)
