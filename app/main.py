@@ -22,24 +22,25 @@ def get_section_info(section_id: str):
 
     section_id = section_id.lower()
 
-    response = requests.get(MICROSERVICE_LINK + section_id)
+    # Check if section exists
+    if section_id not in RECITATION_HOURS:
+        raise HTTPException(status_code=404, detail="Invalid section id")
 
+    # Get TA information from microservice
+    response = requests.get(MICROSERVICE_LINK + section_id)
+    
     # You can check out what the response body looks like in terminal using the print statement
     data = response.json()
     print(data)
     ta_name_list = data["ta"]
-    ta1_name = ta_name_list[0]
-    ta2_name = ta_name_list[1]
-
-    print(ta1_name)
-
-    # TODO Fix this to return correct values for correct sections.
-    if section_id == "a":
-        return {
-            "section": "section_name",
-            "start_time": "HH:MM",
-            "end_time": "HH:MM",
-            "ta": ["taName1", "taName2"]
-        }
-    else:
-        raise HTTPException(status_code=404, detail="Invalid section id")
+    
+    # Parse start and end times from RECITATION_HOURS
+    time_range = RECITATION_HOURS[section_id]
+    start_time, end_time = time_range.split("~")
+    
+    return {
+        "section": section_id,
+        "start_time": start_time,
+        "end_time": end_time,
+        "ta": ta_name_list
+    }
